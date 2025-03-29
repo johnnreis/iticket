@@ -1,18 +1,22 @@
 import * as mysql from "mysql2/promise";
 
-export async function createConnection() {
-  try {
-    const connection = await mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "root",
-      database: "itickets",
-      port: 3306,
-    });
-    console.log("Conexão estabelecida com sucesso!");
-    return connection;
-  } catch (error) {
-    console.error("Erro ao conectar:", error);
-    throw error;
+// singleton
+
+export class Database {
+  private static instance: mysql.Pool;
+
+  private constructor() {}
+
+  public static getInstance(): mysql.Pool {
+    if (!Database.instance) {
+      Database.instance = mysql.createPool({
+        host: process.env.MYSQL_HOST,
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        port: parseInt(process.env.MYSQL_PORT),
+      });
+    }
+    return Database.instance;
   }
 }

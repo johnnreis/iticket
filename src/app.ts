@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import * as mysql from "mysql2/promise";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { createConnection } from "./database";
+import { Database } from "./database";
 
 dotenv.config();
 
@@ -163,10 +163,11 @@ app.listen(process.env.PORT, async () => {
      apagando todos registros e mantendo a estrutura, 
      ideal para esse cenario de teste/estudo 
   */
-  const connection = await createConnection();
+  const connection = Database.getInstance();
   await connection.execute("SET FOREIGN_KEY_CHECKS = 0");
   await connection.execute("TRUNCATE TABLE events");
   await connection.execute("TRUNCATE TABLE customers");
+  await connection.execute("TRUNCATE TABLE users");
   await connection.execute("TRUNCATE TABLE partners");
   await connection.execute("SET FOREIGN_KEY_CHECKS = 1");
 });
