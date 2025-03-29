@@ -1,6 +1,6 @@
 
 ### 
-POST http://localhost:3000/auth/signin
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
@@ -24,11 +24,11 @@ POST http://localhost:3000/customers
 Content-Type: application/json
 
 {
-    "name": "",
-    "email": "",
+    "name": "a customer",
+    "email": "emailtest@gmail.com",
     "password": "secret",
     "address": "partner1@user.com",
-    "phone": ""
+    "phone": "1212131231"
 }
 
 ### 
@@ -36,8 +36,8 @@ POST http://localhost:3000/events
 Content-Type: application/json
 
 {
-    "name": "",
-    "description": "",
+    "name": "a name",
+    "description": "a some description",
     "date": "2025-01-01T00:00:00",
     "location": ""
 }
