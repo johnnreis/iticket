@@ -1,4 +1,4 @@
-import { UserModel } from "../models/auth-model";
+import { UserModel } from "../models/user-model";
 
 export class UserService {
   async findById(userId: number) {

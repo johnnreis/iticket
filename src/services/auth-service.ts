@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { UserModel } from "../models/auth-model";
+import { UserModel } from "../models/user-model";
 import { InvalidCredentialsError } from "../errors/invalid-credential-error";
 export class AuthService {
   async login(email: string, password: string) {
