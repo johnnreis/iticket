@@ -3,11 +3,13 @@
     "target": "ES6",
     "module": "CommonJS",
     "strict": true,
+    "strictNullChecks": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "types": ["jest"] 
+    "typeRoots": ["./src/types"],
+  
   },
   "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules"]
