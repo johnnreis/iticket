@@ -3,6 +3,10 @@ import { PartnerService } from "../services/partner-service";
 import { TicketService } from "../services/ticket-service";
 
 export const createMany = async (req: Request, res: Response) => {
+  if (!req.user) {
+    res.status(401).json({ message: "User not authenticated" });
+    return;
+  }
   const userId = req.user!.id;
   const partnerService = new PartnerService();
   const partner = await partnerService.findByUserId(userId);

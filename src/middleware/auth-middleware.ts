@@ -2,19 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { UserService } from "../services/user-service";
 
-interface UnprotectedRoute {
-  method: string;
-  path: string;
-}
-
 export const config = {
-  jwtSecret: process.env.JWT_SECRET || "123456",
+  jwtSecret: "123456",
   unprotectedRoutes: [
     { method: "POST", path: "/auth/login" },
     { method: "POST", path: "/customers/register" },
     { method: "POST", path: "/partners/register" },
     { method: "GET", path: "/events" },
-  ] as UnprotectedRoute[],
+  ],
 };
 
 export const isUnprotectedRoute = (req: Request): boolean => {
@@ -49,10 +44,12 @@ export const authMiddleware = async (
   next: NextFunction
 ): Promise<void> => {
   if (isUnprotectedRoute(req)) {
+    console.log(`Rota desprotegida: ${req.method} ${req.path}`);
     return next();
   }
 
   const token = extractToken(req);
+
   if (!token) {
     res.status(401).json({ message: "No token provided" });
     return;
@@ -67,9 +64,12 @@ export const authMiddleware = async (
   try {
     const userService = new UserService();
     const user = await userService.findById(payload.id);
+
     if (!user) {
       res.status(401).json({ message: "Failed to authenticate token" });
+      return;
     }
+
     req.user = user as { id: number; email: string };
     next();
   } catch (error) {

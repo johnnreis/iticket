@@ -1,9 +1,14 @@
 ## ITicket - Documentation
 <p>leia sobre o requeriments do desafio aqui: </p>
 
+
+### Meu Diagrama
+
+![Diagram](./assets/images/diagram.png)
+
 ### Minha Proposta de Arquitetura - MVC
 
-![MVC](./excalidraw-challenge-itickets.png)
+![MVC](./assets/images/excalidraw-challenge-itickets.png)
 
 <p>no caso como se trata de uma application backend, "troquei" a view pelo service, um pattern proposto por Martin Flower.</p>
 

@@ -1,4 +1,4 @@
-###
+### Login Com Patner 1
 # @name loginPartner1
 POST http://localhost:3000/auth/login
 Content-Type: application/json
@@ -59,7 +59,18 @@ Content-Type: application/json
     "company_name": "Company Name 2"
 }
 
-###
+### Criação do partner 3
+POST http://localhost:3000/partners/register
+Content-Type: application/json
+
+{
+    "name": "Partner 3",
+    "email": "partner3@user.com",
+    "password": "secret",
+    "company_name": "Company Name 3"
+}
+
+### Cria um customer
 POST http://localhost:3000/customers/register
 Content-Type: application/json
 
@@ -87,7 +98,7 @@ Authorization: Bearer {{ tokenPartner1 }}
 GET http://localhost:3000/partners/events
 Authorization: Bearer {{ tokenPartner1 }}
 
-### ### Listagem de um evento do parceiro
+### Listagem de um evento do parceiro
 GET http://localhost:3000/partners/events/1
 Authorization: Bearer {{ tokenPartner1 }}
 
